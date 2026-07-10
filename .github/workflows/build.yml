@@ -32,7 +32,7 @@ jobs:
           mkdir $GITHUB_WORKSPACE/workdir/clang
           tar zxvf $GITHUB_WORKSPACE/workdir/zyc_clang20.tar.gz -C $GITHUB_WORKSPACE/workdir/clang
   
-      - name: 獲取 ${{ github.event.inputs.device }} 嘅核心源碼
+      - name: 獲取核心源碼
         run: |
           git config --global core.longpaths true
           git clone https://github.com/$GITHUB_REPOSITORY/ -b ${{ steps.branch-names.outputs.current_branch }} --depth 1 $GITHUB_WORKSPACE/workdir/source
@@ -59,4 +59,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: kernel
-          path: source/out/arch/arm64/boot/Image.gz
+          path: workdir/source/out/arch/arm64/boot/Image.gz
